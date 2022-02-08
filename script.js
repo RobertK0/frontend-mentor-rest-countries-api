@@ -70,8 +70,8 @@ const filterResults = function (e) {
 };
 const filterRegion = function (e) {
   console.log(e.target.value);
-  const countriesFiltered = cleanDataArr.filter(
-    (country) => country.region.toLowerCase() === e.target.value
+  const countriesFiltered = cleanDataArr.filter((country) =>
+    country.region.toLowerCase().includes(e.target.value.toLowerCase())
   );
   renderCountries(countriesFiltered);
 };
