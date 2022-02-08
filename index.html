@@ -21,22 +21,30 @@
       <h1 class="title">Where in the world?</h1>
       <div class="theme-toggle-container"><span>Dark mode</span></div>
     </header>
-    <div class="filtering-container">
-      <input
-        class="search-bar"
-        type="text"
-        placeholder="Search for a country..."
-      />
-      <select class="region-selector" name="region" id="region">
-        <option value="">...</option>
-        <option value="africa">Africa</option>
-        <option value="americas">America</option>
-        <option value="asia">Asia</option>
-        <option value="europe">Europe</option>
-        <option value="oceania">Oceania</option>
-      </select>
+    <main>
+      <div class="filtering-container">
+        <input
+          class="search-bar"
+          type="text"
+          placeholder="Search for a country..."
+        />
+        <select class="region-selector" name="region" id="region">
+          <option value="">...</option>
+          <option value="africa">Africa</option>
+          <option value="americas">America</option>
+          <option value="asia">Asia</option>
+          <option value="europe">Europe</option>
+          <option value="oceania">Oceania</option>
+        </select>
+      </div>
+      <div class="card-container"></div>
+    </main>
+    <div class="modal hidden">
+      <header class="header">
+        <h1 class="title">Where in the world?</h1>
+        <div class="theme-toggle-container"><span>Dark mode</span></div>
+      </header>
     </div>
-    <main class="card-container"></main>
     <!-- <div class="card">
       <img src="" alt="" />
       <h2>Germany</h2>
