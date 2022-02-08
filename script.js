@@ -40,13 +40,13 @@ const generateMarkup = function (country) {
   <div class="text-container">
     <h2>${country.name}</h2>
     <div class="text">
-      <span><strong>Population:</strong> ${country.population}</span>
+      <strong>Population:</strong> <span>${country.population}</span>
     </div>
     <div class="text">
-      <span><strong>Region:</strong> ${country.region}</span>
+      <strong>Region:</strong> <span>${country.region}</span>
     </div>
     <div class="text">
-      <span><strong>Capital:</strong> ${country.capital}</span>
+      <strong>Capital:</strong> <span>${country.capital}</span>
     </div>
   </div>
 </div>

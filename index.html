@@ -5,19 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap"
+      rel="stylesheet"
+    />
+
     <script defer src="script.js"></script>
+    <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <input class="search-bar" type="text" />
-    <select class="region-selector" name="region" id="region">
-      <option value="">...</option>
-      <option value="africa">Africa</option>
-      <option value="americas">America</option>
-      <option value="asia">Asia</option>
-      <option value="europe">Europe</option>
-      <option value="oceania">Oceania</option>
-    </select>
+    <header class="header">
+      <h1 class="title">Where in the world?</h1>
+      <div class="theme-toggle-container"><span>Dark mode</span></div>
+    </header>
+    <div class="filtering-container">
+      <input
+        class="search-bar"
+        type="text"
+        placeholder="Search for a country..."
+      />
+      <select class="region-selector" name="region" id="region">
+        <option value="">...</option>
+        <option value="africa">Africa</option>
+        <option value="americas">America</option>
+        <option value="asia">Asia</option>
+        <option value="europe">Europe</option>
+        <option value="oceania">Oceania</option>
+      </select>
+    </div>
     <main class="card-container"></main>
     <!-- <div class="card">
       <img src="" alt="" />
