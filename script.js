@@ -2,6 +2,8 @@
 
 const cardsContainer = document.querySelector(".card-container");
 const searchBar = document.querySelector(".search-bar");
+const regionSelector = document.querySelector(".region-selector");
+
 let cleanDataArr = [];
 const fetchCountries = async function () {
   try {
@@ -66,7 +68,15 @@ const filterResults = function (e) {
   console.log(countriesFiltered);
   renderCountries(countriesFiltered);
 };
+const filterRegion = function (e) {
+  console.log(e.target.value);
+  const countriesFiltered = cleanDataArr.filter(
+    (country) => country.region.toLowerCase() === e.target.value
+  );
+  renderCountries(countriesFiltered);
+};
 
 fetchCountries();
 
 searchBar.addEventListener("keyup", filterResults);
+regionSelector.addEventListener("change", filterRegion);
