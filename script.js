@@ -3,7 +3,10 @@
 const cardsContainer = document.querySelector(".card-container");
 const searchBar = document.querySelector(".search-bar");
 const regionSelector = document.querySelector(".region-selector");
-const modal = document.querySelector(".modal");
+const modal = document.querySelector(".modal-container");
+const modalContent = document.querySelector(".modal-content");
+const backBtn = document.querySelector(".back-btn");
+const themeBtn = document.querySelector(".theme-toggle-btn");
 
 let cleanDataArr = [];
 const fetchCountries = async function () {
@@ -127,10 +130,35 @@ const getCountry = function (e) {
   renderModal(countryObject[0]);
 };
 
+const toggleModal = function () {
+  modal.classList.toggle("hidden");
+  document.documentElement.classList.toggle("scroll-lock");
+};
+
 const renderModal = function (country) {
   console.log(country);
-  modal.classList.remove("hidden");
-  modal.insertAdjacentHTML("beforeend", generateModalMarkup(country));
+  toggleModal();
+  modalContent.innerHTML = generateModalMarkup(country);
+};
+
+let lightThemeBool = true;
+
+const toggleTheme = function () {
+  let color1, color2, colorText;
+  if (lightThemeBool) {
+    color1 = "hsl(207, 26%, 17%)";
+    color2 = "hsl(209, 23%, 22%)";
+    colorText = "hsl(0, 0%, 100%)";
+    lightThemeBool = !lightThemeBool;
+  } else {
+    color1 = "hsl(0, 0%, 98%)";
+    color2 = "hsl(0, 0%, 100%)";
+    colorText = "hsl(200, 15%, 8%)";
+    lightThemeBool = !lightThemeBool;
+  }
+  document.querySelector(":root").style.setProperty("--main-bg", color1);
+  document.querySelector(":root").style.setProperty("--element", color2);
+  document.querySelector(":root").style.setProperty("--text", colorText);
 };
 
 fetchCountries();
@@ -138,3 +166,5 @@ fetchCountries();
 searchBar.addEventListener("keyup", filterResults);
 regionSelector.addEventListener("change", filterRegion);
 cardsContainer.addEventListener("click", getCountry);
+backBtn.addEventListener("click", toggleModal);
+themeBtn.addEventListener("click", toggleTheme);
