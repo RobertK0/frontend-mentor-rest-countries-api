@@ -27,6 +27,7 @@ const fetchCountries = async function () {
         capital: element.capital,
         borders: element.borders,
         flag: element.flag,
+        code: element.alpha3Code,
       };
       cleanDataArr.push(cleanData);
     });
@@ -76,20 +77,40 @@ const generateModalMarkup = function (country) {
       <strong>Subregion:</strong> <span>${country.subregion}</span>
     </div>
     <div class="text">
-      <strong>Capital:</strong> <span>${country.capital}</span>
+      <strong>Capital:</strong> <span>${country.capital || "none"}</span>
     </div>
     <div class="text">
       <strong>Top Level Domain:</strong> <span>${country.topLevelDomain}</span>
     </div>
     <div class="text">
-      <strong>Currencies:</strong> <span>${country.currencies
-        .map((language) => language.name)
-        .join(",")}</span>
+      <strong>Currencies:</strong> <span>${
+        country.currencies
+          ? country.currencies.map((language) => language.name).join(",")
+          : "none"
+      }</span>
     </div>
     <div class="text">
       <strong>Languages:</strong> <span>${country.languages
         .map((language) => language.name)
-        .join(",")}</span>
+        .join(", ")}</span>
+        
+    </div>
+    <div class="text">
+        <strong>Border Countries: </strong>
+        <div class="neigbor-btn-container">
+        ${
+          country.borders
+            ? country.borders
+                .map(
+                  (code) =>
+                    `<button class="neighbor-btn">${findCountryFromCode(
+                      code
+                    )}</button>`
+                )
+                .join(" ")
+            : "<span>none</span>"
+        }
+          </div>
     </div>
   </div>
 </div>
@@ -121,12 +142,17 @@ const filterRegion = function (e) {
   renderCountries(countriesFiltered);
 };
 
+const findCountryFromCode = function (code) {
+  return cleanDataArr.find((country) => country.code === code).name;
+};
+
 const getCountry = function (e) {
   const card = e.target.closest(".card");
   if (!card) return;
   const countryObject = cleanDataArr.filter(
     (country) => country.name === card.dataset.name
   );
+  toggleModal();
   renderModal(countryObject[0]);
 };
 
@@ -137,7 +163,7 @@ const toggleModal = function () {
 
 const renderModal = function (country) {
   console.log(country);
-  toggleModal();
+
   modalContent.innerHTML = generateModalMarkup(country);
 };
 
@@ -149,11 +175,13 @@ const toggleTheme = function () {
     color1 = "hsl(207, 26%, 17%)";
     color2 = "hsl(209, 23%, 22%)";
     colorText = "hsl(0, 0%, 100%)";
+    document.querySelector(".theme-icon").classList.toggle("filled");
     lightThemeBool = !lightThemeBool;
   } else {
     color1 = "hsl(0, 0%, 98%)";
     color2 = "hsl(0, 0%, 100%)";
     colorText = "hsl(200, 15%, 8%)";
+    document.querySelector(".theme-icon").classList.toggle("filled");
     lightThemeBool = !lightThemeBool;
   }
   document.querySelector(":root").style.setProperty("--main-bg", color1);
@@ -166,5 +194,15 @@ fetchCountries();
 searchBar.addEventListener("keyup", filterResults);
 regionSelector.addEventListener("change", filterRegion);
 cardsContainer.addEventListener("click", getCountry);
-backBtn.addEventListener("click", toggleModal);
+// backBtn.addEventListener("click", toggleModal);
 themeBtn.addEventListener("click", toggleTheme);
+modal.addEventListener("click", function (e) {
+  if (e.target.classList.contains("back-btn")) {
+    toggleModal();
+  }
+  if (e.target.classList.contains("neighbor-btn")) {
+    renderModal(
+      cleanDataArr.find((country) => country.name === e.target.innerHTML)
+    );
+  }
+});

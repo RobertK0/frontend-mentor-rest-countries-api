@@ -19,17 +19,47 @@
   <body>
     <header class="header">
       <h1 class="title">Where in the world?</h1>
-      <button class="theme-toggle-btn">Dark mode</button>
+      <button class="theme-toggle-btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="theme-icon"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          /></svg
+        >&nbsp;Dark mode
+      </button>
     </header>
     <main>
       <div class="filtering-container">
-        <input
-          class="search-bar"
-          type="text"
-          placeholder="Search for a country..."
-        />
+        <div class="search-bar-container">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="search-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+          <input
+            class="search-bar"
+            type="text"
+            placeholder="Search for a country..."
+          />
+        </div>
         <select class="region-selector" name="region" id="region">
-          <option value="">...</option>
+          <option value="">All Regions</option>
           <option value="africa">Africa</option>
           <option value="americas">America</option>
           <option value="asia">Asia</option>
