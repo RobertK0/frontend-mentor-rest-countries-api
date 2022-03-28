@@ -22,11 +22,9 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [here](https://zero0k.github.io/frontend-mentor-rest-countries-api/)
+- Live Site URL: [here](https://RobertK0.github.io/frontend-mentor-rest-countries-api/)
 
-## Author
 
-- Frontend Mentor - [@zero0k](https://www.frontendmentor.io/profile/Zero0k)
 
 
 
